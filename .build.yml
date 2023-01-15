@@ -1,0 +1,14 @@
+image: alpine/latest
+packages:
+  - go
+  - scdoc
+sources:
+  - https://github.com/delthas/rttop
+tasks:
+  - build: |
+      cd rttop
+      go build -v ./...
+      scdoc <doc/rttop.1.scd >/dev/null
+  - gofmt: |
+      cd rttop
+      test -z $(gofmt -l .)

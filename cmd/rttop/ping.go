@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/go-ping/ping"
+	"runtime"
 	"time"
 )
 
@@ -13,6 +14,10 @@ func pingRun(host string) error {
 	}
 	pinger.Interval = period
 	pinger.RecordRtts = false
+
+	if runtime.GOOS == "windows" {
+		pinger.SetPrivileged(true)
+	}
 
 	seq := make(map[int]int, 65536)
 	pinger.OnSend = func(p *ping.Packet) {

@@ -10,7 +10,7 @@ Install a Go toolchain.
 
 Then:
 ```shell
-go install github.com/delthas/rttop@master
+go install github.com/delthas/rttop/cmd/rttop@master
 ```
 
 ## Running
